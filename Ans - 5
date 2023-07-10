@@ -1,0 +1,39 @@
+To merge two sorted arrays nums1 and nums2 into a single sorted array, we can use a two-pointer approach. Here's how the algorithm works:
+
+Initialize three pointers: p1 to track the elements in nums1, starting from the last non-zero element, p2 to track the elements in nums2, starting from the last element, and p to track the position where elements are being merged in nums1.
+While p1 >= 0 and p2 >= 0, do the following:
+Compare the values nums1[p1] and nums2[p2].
+If nums1[p1] is greater than or equal to nums2[p2], assign nums1[p1] to nums1[p] and decrement both p1 and p.
+If nums1[p1] is less than nums2[p2], assign nums2[p2] to nums1[p] and decrement both p2 and p.
+After the above loop, if there are any remaining elements in nums2 (i.e., p2 >= 0), copy them to the corresponding positions in nums1.
+Return the modified nums1 array.
+Here's the implementation in Python:
+
+
+def merge(nums1, m, nums2, n):
+    p1 = m - 1
+    p2 = n - 1
+    p = m + n - 1
+
+    while p1 >= 0 and p2 >= 0:
+        if nums1[p1] >= nums2[p2]:
+            nums1[p] = nums1[p1]
+            p1 -= 1
+        else:
+            nums1[p] = nums2[p2]
+            p2 -= 1
+        p -= 1
+
+    # Copy remaining elements from nums2 to nums1
+    nums1[:p2 + 1] = nums2[:p2 + 1]
+
+# Example usage
+nums1 = [1, 2, 3, 0, 0, 0]
+m = 3
+nums2 = [2, 5, 6]
+n = 3
+merge(nums1, m, nums2, n)
+print(nums1)  # Output: [1, 2, 2, 3, 5, 6]
+In the example above, the arrays nums1 and nums2 are merged into a single sorted array [1, 2, 2, 3, 5, 6]. The function merge performs the merging operation by modifying nums1 in-place.
+
+The time complexity of this algorithm is O(m + n), where m and n are the lengths of nums1 and nums2 respectively, as we iterate through both arrays once.
