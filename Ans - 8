@@ -1,0 +1,38 @@
+To find the number that occurs twice and the number that is missing in an array nums, we can utilize a few observations.
+
+Let's assume that the length of the array is n.
+
+Compute the sum of all numbers from 1 to n using the formula expected_sum = n * (n + 1) / 2. This will give us the sum of all numbers that should be present in the array if no errors occurred.
+Initialize a set num_set to keep track of the unique numbers in nums.
+Iterate through each number num in nums:
+If num is already in num_set, it is the number that occurs twice.
+Otherwise, add num to num_set.
+Compute the actual sum of the numbers in nums and subtract it from the expected sum. The difference will be the missing number.
+Return the numbers that occur twice and the missing number in the form of an array.
+Here's the implementation in Python:
+
+
+def findErrorNums(nums):
+    n = len(nums)
+    expected_sum = n * (n + 1) // 2
+    actual_sum = sum(nums)
+    num_set = set()
+
+    duplicate_num = 0
+    for num in nums:
+        if num in num_set:
+            duplicate_num = num
+        else:
+            num_set.add(num)
+
+    missing_num = expected_sum - actual_sum + duplicate_num
+
+    return [duplicate_num, missing_num]
+
+# Example usage
+nums = [1, 2, 2, 4]
+result = findErrorNums(nums)
+print(result)  # Output: [2, 3]
+In the example above, the array nums contains the number 2 that occurs twice, and the number 3 is missing. Therefore, the function findErrorNums returns [2, 3].
+
+The time complexity of this algorithm is O(n), where n is the length of the nums array, as we iterate through the array once to find the duplicate number and compute the actual sum.
