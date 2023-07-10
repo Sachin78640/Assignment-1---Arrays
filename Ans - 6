@@ -1,0 +1,27 @@
+To determine if any value appears at least twice in an array nums, we can use a hash set to keep track of the elements we have encountered so far. Here's how the algorithm works:
+
+Initialize an empty hash set.
+Iterate through each element num in nums.
+For each element, check if it exists in the hash set.
+If it does, return True as it indicates a duplicate value.
+If it doesn't, add the element to the hash set.
+If the loop completes without finding any duplicates, return False.
+Here's the implementation in Python:
+
+def containsDuplicate(nums):
+    seen = set()
+
+    for num in nums:
+        if num in seen:
+            return True
+        seen.add(num)
+
+    return False
+
+# Example usage
+nums = [1, 2, 3, 1]
+result = containsDuplicate(nums)
+print(result)  # Output: True
+In the example above, the array nums contains the duplicate value 1. Therefore, the function containsDuplicate returns True. If there were no duplicates in the array, the function would return False.
+
+The time complexity of this algorithm is O(n), where n is the length of the nums array, since we iterate through each element once and perform constant-time operations for set membership checks and insertions.
