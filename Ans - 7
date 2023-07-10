@@ -1,0 +1,30 @@
+To move all zeros to the end of an integer array nums while maintaining the relative order of the non-zero elements, we can use a two-pointer approach. Here's how the algorithm works:
+
+Initialize two pointers, left and right, both pointing to the start of the array.
+Iterate through the array using a while loop with the condition right < len(nums).
+If the value at the right pointer is not zero, swap the values at the left and right pointers and increment both pointers.
+If the value at the right pointer is zero, only increment the right pointer.
+Continue the process until the right pointer reaches the end of the array.
+After the loop, all non-zero elements will be at the beginning of the array, and the remaining elements from the left pointer onwards should be set to zero.
+Here's the implementation in Python:
+
+
+def moveZeroes(nums):
+    left = 0
+    right = 0
+
+    while right < len(nums):
+        if nums[right] != 0:
+            nums[left], nums[right] = nums[right], nums[left]
+            left += 1
+        right += 1
+
+    nums[left:] = [0] * (len(nums) - left)
+
+# Example usage
+nums = [0, 1, 0, 3, 12]
+moveZeroes(nums)
+print(nums)  # Output: [1, 3, 12, 0, 0]
+In the example above, the array nums has all the zeros moved to the end while maintaining the relative order of the non-zero elements. The function moveZeroes performs this operation in-place.
+
+The time complexity of this algorithm is O(n), where n is the length of the nums array, as we iterate through the array once.
