@@ -1,0 +1,29 @@
+To remove all occurrences of a given value val from the array nums in-place, we can use a two-pointer approach. Here's the algorithm:
+
+1. Initialize two pointers, i and j, both pointing to the start of the array.
+2. Iterate through the array using a while loop, with the condition j < len(nums).
+3. If the value at index j is equal to val, increment j to skip the occurrence of val.
+4. If the value at index j is not equal to val, assign the value at index j to the position i and increment both i and j.
+5. Continue the process until j reaches the end of the array.
+6. Finally, return the value of i, which represents the number of elements in nums that are not equal to val.
+Here's the implementation in Python:
+
+def removeElement(nums, val):
+    i = 0
+    j = 0
+
+    while j < len(nums):
+        if nums[j] != val:
+            nums[i] = nums[j]
+            i += 1
+        j += 1
+
+    return i
+
+# Example usage
+nums = [3, 2, 2, 3]
+val = 3
+k = removeElement(nums, val)
+print(k)  # Output: 2
+print(nums[:k])  # Output: [2, 2]
+
