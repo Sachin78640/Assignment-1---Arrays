@@ -1,0 +1,30 @@
+To increment a large integer represented as an array of digits, we can follow a simple algorithm. Here's how it works:
+
+1. Start from the least significant digit (the rightmost digit) of the array.
+2. Increment the value of the digit by one.
+3. If the incremented digit becomes 10, set it to 0 and move to the next digit to the left.
+4. Repeat steps 2 and 3 until a non-10 digit is encountered or we reach the most significant digit.
+5. If the most significant digit becomes 10 after incrementing, set it to 0 and insert a new digit 1 at the beginning of the array.
+Return the modified array.
+Here's the implementation in Python:
+
+def plusOne(digits):
+    n = len(digits)
+    for i in range(n - 1, -1, -1):
+        if digits[i] != 9:
+            digits[i] += 1
+            return digits
+        else:
+            digits[i] = 0
+
+    # If all digits were 9, add a new digit 1 at the beginning
+    digits.insert(0, 1)
+    return digits
+
+# Example usage
+digits = [1, 2, 3]
+result = plusOne(digits)
+print(result)  # Output: [1, 2, 4]
+In the example above, the array digits represents the number 123. Incrementing it by one results in the number 124, which is represented by the array [1, 2, 4]. The function plusOne performs the increment operation and returns the modified array of digits.
+
+The time complexity of this algorithm is O(n), where n is the length of the digits array, since we iterate through the array once.
